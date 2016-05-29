@@ -19,6 +19,7 @@ else
     if [ -z $ip_socket ] ; then
       ip_socket="-h 127.0.0.1"
     else
+      host_name=$(echo $ip_socket | awk -F. '{ print $1 }')
       ip_socket="-h $ip_socket"
     fi
 fi
@@ -57,6 +58,7 @@ else
 fi
 
 if [ "$1" = "config" ]; then
+    [ -n "$host_name" ] && echo "host_name $host_name"
     # Expose all possibles graphes according to server's capabilities
     redis-cli $ip_socket $port_path $passwd info | awk -v port=${muninport} -F: '
 

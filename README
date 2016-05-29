@@ -48,3 +48,13 @@ and/or
 
 [redis_socket_socketpath]
 env.password another-secret-password
+
+
+# multiple remote hosts, especially for AWS
+
+This plugin uses the first subdomain of remote hosts FQDN as a host_name.
+For example, if the symbolic link created for ElastiCache(redis) like,
+
+/etc/munin/plugins/redis_myredis.xxxxx.0001.apne1.cache.amazonaws.com_6397
+
+then host_name is myredis.
